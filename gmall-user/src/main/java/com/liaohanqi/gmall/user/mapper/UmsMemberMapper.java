@@ -1,8 +1,7 @@
 package com.liaohanqi.gmall.user.mapper;
 
-import com.liaohanqi.gmall.user.bean.UmsMember;
+import com.liaohanqi.gmall.bean.UmsMember;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UmsMemberMapper {

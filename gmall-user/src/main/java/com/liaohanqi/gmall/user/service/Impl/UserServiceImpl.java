@@ -1,8 +1,8 @@
 package com.liaohanqi.gmall.user.service.Impl;
 
-import com.liaohanqi.gmall.user.bean.UmsMember;
+import com.liaohanqi.gmall.bean.UmsMember;
+import com.liaohanqi.gmall.service.UserService;
 import com.liaohanqi.gmall.user.mapper.UmsMemberMapper;
-import com.liaohanqi.gmall.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
