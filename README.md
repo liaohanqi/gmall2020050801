@@ -11,3 +11,6 @@ day01
 分别为gmall-parent/gmall-api/gmall-common-util/gmall-service-util/gmall-web-util
 各部分进行了引入依赖。
 并且能够运行，且浏览器能够读取和获取，完美！！！（20200508）
+
+第三次提交
+此次是试验git上存的准确性
