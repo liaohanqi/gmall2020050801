@@ -1,5 +1,6 @@
 package com.liaohanqi.gmall.user.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.liaohanqi.gmall.bean.UmsMember;
 import com.liaohanqi.gmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class UserController {
 
-    @Autowired
+//    @Autowired
+    @Reference
     UserService userService;
 
     @RequestMapping("index")
