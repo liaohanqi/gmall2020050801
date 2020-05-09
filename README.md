@@ -58,6 +58,23 @@ day02
             分别为gmall-user-web和gmall-user-service
             
             最后运行成功
-
-
+            
+         第四次提交
+            -----正式开始电商项目-----
+            new了两个新的module，分别为gmall-manager-web和gmall-managet-service。
+                其中引入了以下几点：
+                1、在manager-web里，引入了fastDFS对图片的上存和下载，搭配着nginx使用(此时nginx作为web服务器使用)
+                2、在api里，引入了大量的相关bean（bean就是数据库字段的java化，就是封装？？？？？）
+                3、引入了thmeleaf前端动态渲染模板技术，springBoot的指定搭配
+                    前端的开发工具及技术介绍
+                        ①vscode前端开发工具，相当于后端开发工具idea
+                        ②Node.js 简单来说（相当于），就是运行在服务端的 JavaScript，是一个事件驱动I/O服务端JavaScript环境
+                        ③NPM 是 Node.js的包管理工具，相当于前端的Maven 
+                        ④Vue.js是一套用于构建用户界面的渐进式框架,核心库只关注视图层，
+                                不仅易于上手，还便于与第三方库或既有项目整合,前端集成开发框架，
+                                 就像springboot(一般通过axios远程访问数据服务器)
+                    《前后端分离》之前端环境和工具的搭建：
+                        首先，把node.js安装在linux服务器上，相当于安装了环境；
+                        然后，安装npm，node.js默认集成npm
+                        最后，找到前端包后，cmd文件，然后输入npm run dev即可。
 
