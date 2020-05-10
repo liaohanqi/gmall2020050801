@@ -49,8 +49,6 @@ day02
             	服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。
 
         《试验别的同事对同一代码做出更新的情况》
-
-        《试验别的同事对同一代码做出更新的情况》
         
         第三次提交
             原来user的dao层/service层与controller层为同一模块
@@ -85,4 +83,42 @@ day03
                     CatalogController：平台属性的目录(Catalog)
                     AttrController：平台属性的字段和属性（value）
                     以及他们的service层和dao层的实现
-            胜利在望了！！！！！！！！！《yes》
+            胜利在望了！！！！！！！！！
+            
+        第二次提交：
+            完美手工！！！！！！！！！！
+            managet模块已经完成了。。。。。。。。。。爽！！！！！
+                一：spu（平台属性）和sku（销售属性）的区别
+                    spu平台属性和平台属性值主要用于商品的《检索》，每个三级分类对应的属性都不同。 
+                    sku销售属性，就是商品详情页右边，可以通过销售属性来定位一组spu下的哪款sku
+                二：引入了fastDFS对图片的上存和下载
+                    FastDFS整合nginx服务器，Nginx此时，作为web服务器使用。需要启动nginx，才能根据服务地址和相关的url进行访问图片。
+                三：电商项目各模块涉及的表
+                  User模块
+                  	    ums_member
+                  Manager模块
+                  		pms_base_attr_info
+                  		pms_base_attr_value
+                  		pms_base_catalog1
+                  		pms_base_catalog2
+                  		pms_base_catalog3
+                  		pms_base_sale_attr
+                  	spu类
+                  		pms_product_info
+                  		pms_product_sale_attr
+                  		pms_product_sale_attr_value
+                  		pms_product_vertify_record
+                  	sku类
+                  		pms_sku_attr_value
+                  		pms_sku_image
+                  		pms_sku_info
+                  		pms_sku_sale_attr_value
+                  order模块
+                  	oms_order
+                  	oms_order_item
+                  payment模块
+                  	payment_info
+                  cart模块
+                  	oms_cart_item
+                  	
+             先这样。休息下。洗澡去！！！！！！！！！
