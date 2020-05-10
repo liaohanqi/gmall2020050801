@@ -85,4 +85,4 @@ day03
                     CatalogController：平台属性的目录(Catalog)
                     AttrController：平台属性的字段和属性（value）
                     以及他们的service层和dao层的实现
-            胜利在望了！！！！！！！！！
+            胜利在望了！！！！！！！！！《yes》
