@@ -76,3 +76,11 @@ day02
                         然后，安装npm，node.js默认集成npm
                         最后，找到前端包后，cmd文件，然后输入npm run dev即可。
 
+day03
+        
+        第一次提交：
+            完成了：两个controller，分别为AttrController和CatalogController
+                    CatalogController：平台属性的目录(Catalog)
+                    AttrController：平台属性的字段和属性（value）
+                    以及他们的service层和dao层的实现
+            胜利在望了！！！！！！！！！

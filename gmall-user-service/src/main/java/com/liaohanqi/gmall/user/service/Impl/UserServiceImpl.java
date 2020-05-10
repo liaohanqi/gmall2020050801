@@ -5,13 +5,14 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.liaohanqi.gmall.bean.UmsMember;
 import com.liaohanqi.gmall.service.UserService;
 import com.liaohanqi.gmall.user.mapper.UmsMemberMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 //@Service
 @Service
 public class UserServiceImpl implements UserService {
 
-//    @Autowired
-    @Reference
+    @Autowired
+//    @Reference
     UmsMemberMapper umsMemberMapper;
 
     @Override
