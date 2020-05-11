@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
-public class spuServiceimpl implements SpuService {
+public class spuServiceImpl implements SpuService {
 
     @Autowired
     PmsProductInfoMapper pmsProductInfoMapper;
