@@ -151,5 +151,5 @@ day04
                         启动命令：./redis-cli -h 192.168.37.100 -p 6379
                 
         任务完成情况：
-            创建了item工程的web模块，没有service模块，使用的是manager工程的service模块。
+             创建了item工程的web模块，没有service模块，使用的是manager工程的service模块。
         
