@@ -153,3 +153,13 @@ day04
         任务完成情况：
              创建了item工程的web模块，没有service模块，使用的是manager工程的service模块。
         
+        第二次提交
+            今天干不动了，明天再干！
+            item残留了一个小bug没有解决，如下：
+            ***************************
+            APPLICATION FAILED TO START
+            ***************************
+            Description:
+            Field redisUtil in com.liaohanqi.gmall.manager.service.Impl.SkuServiceImpl required a bean of type 'com.liaohanqi.gmall.util.RedisUtil' that could not be found.
+            Action:
+            Consider defining a bean of type 'com.liaohanqi.gmall.util.RedisUtil' in your configuration.
