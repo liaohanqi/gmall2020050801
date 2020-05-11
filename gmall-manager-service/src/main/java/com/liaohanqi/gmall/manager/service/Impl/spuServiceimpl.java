@@ -109,6 +109,12 @@ public class spuServiceimpl implements SpuService {
         return pmsProductImages;
     }
 
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrListBysql(String spuId, String skuId) {
+
+        List<PmsProductSaleAttr> PmsProductSaleAttrs = pmsProductSaleAttrMapper.spuSaleAttrListBysql(spuId,skuId);
+        return PmsProductSaleAttrs;
+    }
 
 
 }

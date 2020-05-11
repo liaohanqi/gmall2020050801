@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="a.css"/>
+</head>
+<body>
+    取值：
+    <input value="1111" type="text" th:value="${hello}"/><br />
+    <p th:text="${hello}">段落内容</p>
+
+    循环：
+    <input th:each="str:${list}" th:value="${str}" type="text"><br />
+    <p th:each="str2:${list}">
+        <input type="text" th:value="${str2}">
+    </p>
+    <br />
+    判断：
+    <input value="我存在" type="text"  th:if="${1==2}"/><br />
+    <input value="我存在" type="checkbox"  th:checked="${1==1}" /><br />
+
+    <!--<div style="width: 50px;height: 50px;background-color: red"/><br />-->
+    <!--<div class="green"/>-->
+    <div th:class="(${1==2}?'red':'green')"></div>
+
+    页面JS中取得后台的值
+    <input type="button" onclick="a(1)" value="点我"><br />
+    <!--<a href="javascript:a(1)">点我<a/><br />-->
+    <a th:href="'javascript:a(\''+${v}+'\');'">点我</a><br />
+
+    页面引入：
+    <div th:include="b::b-child"></div>
+
+    <div th:text="${user?.username}" />
+     <script type="text/javascript" language="JavaScript">
+    function a(v){
+        alert(v);
+    }
+    </script>
+</body>
+</html>
