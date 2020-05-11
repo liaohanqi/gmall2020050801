@@ -122,3 +122,34 @@ day03
                   	oms_cart_item
                   	
              先这样。休息下。洗澡去！！！！！！！！！hh
+day04
+
+        第一次提交
+        总结：
+            1、启动user工程：
+                ①由于springBoot内置tomcat，所以无需启动tomcat，直接运行后，在浏览器根据域名和端口号以及uri就能打开相关的信息
+                ②此部分也不涉及到web页面信息，所以没有前后端分离和使用thymeleaf页面渲染之说的。
+                ③由于其中需要从数据库拿取数据，因此需要连接数据库。
+            2、启动manager工程
+                ①此处，使用了前后端分离。因此，需要命令（npm run dev）启动前端包。
+                    前端和后端ip和端口不一致，因此涉及到跨域问题。需要加@CrossOrigin
+                ②由于引入了dubbo+zookeeper分布式框架，
+                    打开虚拟机，服务器会自动启动zookeeper
+                    可以根据--服务器地址+8080/dubbo--查看dubbo服务的详细情况。
+                ③使用了fastDFS对图片的上存下载，并且搭配着ngnix作为web服务器使用。因此，需要启动ngnix服务器。
+            3、启动item工程
+                ①使用了thymeleaf前端动态模块技术，需要把前端页面添加到resource的static和template中
+                    static:存放着页面渲染的文件，如*.css/*.js/*.jpg(png)
+                           同时，也存放着静态文件
+                    template:存放着页面文件，如*.html
+                ②item工程没有service模块，使用的是managet的service模块，因此启动此工程前，先启动manager的service工程。
+                ③中间还小小地使用了redis，对item数据的缓存
+                    启动redis：/usr/local/redis/bin/redis-server /usr/local/redis/redis.conf 
+                    查看进程：netstat -anp |grep 6379
+                    服务器连接redis：
+                        路径：cd /usr/local/redis/bin
+                        启动命令：./redis-cli -h 192.168.37.100 -p 6379
+                
+        任务完成情况：
+            创建了item工程的web模块，没有service模块，使用的是manager工程的service模块。
+        
