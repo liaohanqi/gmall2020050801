@@ -1,13 +1,13 @@
 package com.liaohanqi.gmall.item;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GmallItemWebApplicationTests {
+public class GmallItemWebApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }

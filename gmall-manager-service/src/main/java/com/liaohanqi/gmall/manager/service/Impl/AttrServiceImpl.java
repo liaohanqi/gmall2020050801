@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AttrServiceImpl implements AttrService {
@@ -91,6 +92,14 @@ public class AttrServiceImpl implements AttrService {
         pmsBaseAttrInfo1.setAttrValueList(pmsBaseAttrValues);
         return pmsBaseAttrInfo1;
 
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> getAttrValueListByValueIds(Set valueIdSet) {
+
+        String join = StringUtils.join(valueIdSet, ",");
+        List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrValueMapper.selectAttrValueListByValueIds(join);
+        return pmsBaseAttrInfos;
     }
 
 }
