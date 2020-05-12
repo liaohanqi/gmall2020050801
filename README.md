@@ -94,9 +94,9 @@ day03
                 二：引入了fastDFS对图片的上存和下载
                     FastDFS整合nginx服务器，Nginx此时，作为web服务器使用。需要启动nginx，才能根据服务地址和相关的url进行访问图片。
                 三：电商项目各模块涉及的表
-                  User模块
+                  User工程
                   	    ums_member
-                  Manager模块
+                  Manager工程
                   		pms_base_attr_info
                   		pms_base_attr_value
                   		pms_base_catalog1
@@ -113,13 +113,17 @@ day03
                   		pms_sku_image
                   		pms_sku_info
                   		pms_sku_sale_attr_value
-                  order模块
-                  	oms_order
-                  	oms_order_item
-                  payment模块
-                  	payment_info
-                  cart模块
-                  	oms_cart_item
+                  elastricSearch工程
+                        PmsSearchCrumb
+                        PmsSearchParam
+                        PmsSearchSkuInfo
+                  order工程
+                  	    oms_order
+                  	    oms_order_item
+                  payment工程
+                  	    payment_info
+                  cart工程
+                  	    oms_cart_item
                   	
              先这样。休息下。洗澡去！！！！！！！！！hh！！
              先这样。休息下。洗澡去！！！！！！！！！hh
@@ -164,3 +168,25 @@ day04
             Field redisUtil in com.liaohanqi.gmall.manager.service.Impl.SkuServiceImpl required a bean of type 'com.liaohanqi.gmall.util.RedisUtil' that could not be found.
             Action:
             Consider defining a bean of type 'com.liaohanqi.gmall.util.RedisUtil' in your configuration.
+        
+        以上问题没解决。过！！！！！！！！！！
+        
+day05
+
+        第一次提交
+            一、静态页面的作用和生成！
+            二、网页显示一般格式是：域名+端口号+uri
+                没配DNS前，我们一般是：localhost+端口号+uri
+                配置DNS后，我们可以是：search.gmall.com===localhost.gmall.com。
+                    比如浏览器输入gmall.search.com，那么DNS会查找出它的ip地址是localhost
+                    DNS就是根据域名查找ip地址。
+                1：DNS配置就是对域名就行配置：
+                    路径：C:\Windows\System32\drivers\etc   hosts文件
+                    配置后的样子：127.0.0.1 localhost search.gmall.com cart.gmall.com item.gmall.com。。。。
+                2：端口号的配置在页面里：（重点在端口号）
+                    如下：function item(skuid) {
+                              console.log("skuid:"+skuid);
+                              window.open("http://item.gmall.com:8082/"+skuid+".html");
+                          }
+                3：uri的配置在controller里的形参        
+            三：search工程，关联着manager工程
