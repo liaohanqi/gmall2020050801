@@ -30,8 +30,9 @@ public class SkuServiceImpl implements SkuService {
     @Autowired
     PmsSkuAttrValueMapper pmsSkuAttrValueMapper;
 
-    @Autowired
-    RedisUtil redisUtil;
+//    @Autowired
+//    @Reference
+//    RedisUtil redisUtil;
 
     //1、保存sku，生成主键
     //2、保存skuimgae
@@ -73,36 +74,50 @@ public class SkuServiceImpl implements SkuService {
     @Override
     public PmsSkuInfo item(String skuId) {
 
-        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+        //引入redis前
+//        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+//        pmsSkuInfo.setId(skuId);
+//        PmsSkuInfo pmsSkuInfo1 = pmsSkuInfoMapper.selectOne(pmsSkuInfo);
+//
+//        PmsSkuImage pmsSkuImage = new PmsSkuImage();
+//        pmsSkuImage.setSkuId(skuId);
+//        List<PmsSkuImage> pmsSkuImages = pmsSkuImageMapper.select(pmsSkuImage);
+//        pmsSkuInfo1.setSkuImageList(pmsSkuImages);
+//
+//        return pmsSkuInfo1;
+        return null;
 
-        //请求缓存
-        Jedis jedis = redisUtil.getJedis();
-
-        try {
-            //缓存规则，怎么定义缓存key和value
-            String skuInfoJson = jedis.get("skuInfo:" + skuId + ":info");//skuInfo:skuId:info
-
-            //如果查询缓存返回是空的话，那就查询数据库
-            if (StringUtils.isBlank(skuInfoJson)){
-                //查询db
-                pmsSkuInfo = itemFromDb(skuId);
-
-                //查询有结果则更新到redis中
-                if (pmsSkuInfo != null) {
-                    jedis.set("skuInfo:" + skuId + ":info", JSON.toJSONString(pmsSkuInfo));
-
-                    }
-                //如果缓存有东西
-                }else {
-                    //转化为缓存
-                    pmsSkuInfo = JSON.parseObject(skuInfoJson, PmsSkuInfo.class);
-                }
-        } finally {
-            jedis.close();
-
-        }
-
-        return pmsSkuInfo;
+        //引入redis后
+//        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+//
+//        //请求缓存
+//        Jedis jedis = redisUtil.getJedis();
+//
+//        try {
+//            //缓存规则，怎么定义缓存key和value
+//            String skuInfoJson = jedis.get("skuInfo:" + skuId + ":info");//skuInfo:skuId:info
+//
+//            //如果查询缓存返回是空的话，那就查询数据库
+//            if (StringUtils.isBlank(skuInfoJson)){
+//                //查询db
+//                pmsSkuInfo = itemFromDb(skuId);
+//
+//                //查询有结果则更新到redis中
+//                if (pmsSkuInfo != null) {
+//                    jedis.set("skuInfo:" + skuId + ":info", JSON.toJSONString(pmsSkuInfo));
+//
+//                    }
+//                //如果缓存有东西
+//                }else {
+//                    //转化为缓存
+//                    pmsSkuInfo = JSON.parseObject(skuInfoJson, PmsSkuInfo.class);
+//                }
+//        } finally {
+//            jedis.close();
+//
+//        }
+//
+//        return pmsSkuInfo;
     }
 
     @Override

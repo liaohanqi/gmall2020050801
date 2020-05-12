@@ -26,6 +26,14 @@ public class ItemController {
     @Reference
     SkuService skuService;
 
+    //显示出item原始页面（静态页面）
+    @RequestMapping("index")
+    public String index(){
+
+        return "item";
+    }
+
+    //根据存入地skuId,动态增加相关地商品信息
     @RequestMapping("{skuId}.html")
     public String item(@PathVariable String skuId, ModelMap map){
 
