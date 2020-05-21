@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.liaohanqi.gmall.bean.*;
 import com.liaohanqi.gmall.service.AttrService;
 import com.liaohanqi.gmall.service.SearchService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ public class SearchController {
     @Reference
     SearchService searchService;
 
-    @Autowired
+    @Reference
     AttrService attrService;
 
     @RequestMapping("index")
@@ -87,10 +87,44 @@ public class SearchController {
         return "list";
     }
 
-    private String getUrlParam(PmsSearchParam pmsSearchParam, String... valueId) {
+    private String getUrlParam(PmsSearchParam pmsSearchParam, String... valudIdForDelete) {
+
+        String urlParam = "";
+        String catalog3Id = pmsSearchParam.getCatalog3Id();
+        String keyword = pmsSearchParam.getKeyword();
+        String[] valueId1 = pmsSearchParam.getValueId();
+
+        //如果传入的是三级Id
+        if (StringUtils.isNotBlank(catalog3Id)){
+            if (StringUtils.isNotBlank(urlParam)){
+                urlParam = urlParam + "&";
+            }
+            urlParam = urlParam + "catalog3Id=" + catalog3Id;
+        }
+
+        //如果传入的是关键字
+        if (StringUtils.isNotBlank(keyword)){
+            if (StringUtils.isNotBlank(keyword)){
+                urlParam = urlParam +"&";
+            }
+            urlParam = urlParam + "keyword=" + keyword;
+        }
+
+        //如果传入的是平台属性
+        if (valueId1!=null &&valueId1.length >0){
+            for (String valudId : valueId1) {
+                if (valudIdForDelete == null || valudIdForDelete.length==0){
+                    urlParam = urlParam + "&valueId="+valudId;
+                }else {
+                    if (!valudIdForDelete[0].equals(valudId)){
+                        urlParam = urlParam + "&valueId=" + valudId;
+                    }
+                }
+            }
+        }
 
 
-        return null;
+        return urlParam;
     }
 
 }
