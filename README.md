@@ -382,3 +382,5 @@ day不知道过了多少天
                                      multi.exec();
                                   5、最后，用setNX命令限制一个用户抢成功之后，15分钟内不能再次抢购；
                                      jedis.set("user:"+userId+":seckill","1","nx","px",1000*60*15);
+                                     
+                                     测试git命令
