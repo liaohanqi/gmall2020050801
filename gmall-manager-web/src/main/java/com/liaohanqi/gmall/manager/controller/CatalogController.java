@@ -26,7 +26,6 @@ public class CatalogController {
         return "index";
     }
 
-
     @RequestMapping("getCatalog1")
     @ResponseBody
     public List<PmsBaseCatalog1> getCatalog1(){
@@ -53,6 +52,5 @@ public class CatalogController {
 
         return pmsBaseCatalog2List;
     }
-
 
 }

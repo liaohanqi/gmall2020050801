@@ -47,9 +47,7 @@ public class SearchServiceImpl implements SearchService {
         //执行搜索
         try {
             SearchResult searchResult = jestClient.execute(search);
-
             List<SearchResult.Hit<PmsSearchSkuInfo, Void>> hits = searchResult.getHits(PmsSearchSkuInfo.class);
-
             for (SearchResult.Hit<PmsSearchSkuInfo, Void> hit : hits) {
                 //
                 PmsSearchSkuInfo pmsSearchSkuInfo = hit.source;
@@ -57,7 +55,6 @@ public class SearchServiceImpl implements SearchService {
                 Double score = hit.score;
                 //处理高亮显示
                 Map<String, List<String>> highlight = hit.highlight;
-
                 //高亮
                 List<String> list = highlight.get("skuName");
                 String skuName = list.get(0);
@@ -70,44 +67,32 @@ public class SearchServiceImpl implements SearchService {
             MetricAggregation aggregations = searchResult.getAggregations();
             TermsAggregation abc = aggregations.getTermsAggregation("abc");
             List<TermsAggregation.Entry> buckets = abc.getBuckets();
-
             for (TermsAggregation.Entry bucket : buckets) {
                 String key = bucket.getKey();
                 Long count = bucket.getCount();
                 System.out.println(key + "------" + count);
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return pmsSearchSkuInfos;
     }
-
     //通过elasticSearch传入的pmsSearchParam进行dsl语句编辑（dsl语句相当于mysql的sql语句）
     private String getDsl(PmsSearchParam pmsSearchParam) {
-
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
-
         String catalog3Id = pmsSearchParam.getCatalog3Id();
         String keyword = pmsSearchParam.getKeyword();
         String[] valueIds = pmsSearchParam.getValueId();
-
         //三级分类参数
         if(StringUtils.isNotBlank(catalog3Id)){
-
             TermQueryBuilder termQueryBuilder = new TermQueryBuilder("catalog3Id", catalog3Id);
             boolQueryBuilder.filter(termQueryBuilder);
-
         }
         //关键字参数
         if(StringUtils.isNotBlank(keyword)){
-
             MatchQueryBuilder matchQueryBuilder = new MatchQueryBuilder("skuName", keyword);
             boolQueryBuilder.must(matchQueryBuilder);
-
             //对关键字进行高亮
             HighlightBuilder highlightBuilder = new HighlightBuilder();
             //高亮部分
@@ -125,18 +110,14 @@ public class SearchServiceImpl implements SearchService {
                 boolQueryBuilder.filter(termQueryBuilder);
             }
         }
-
         searchSourceBuilder.query(boolQueryBuilder);
         searchSourceBuilder.from(0);
         searchSourceBuilder.size(20);
-
         //对平台属性参数加入聚合函数
         TermsBuilder aggs = AggregationBuilders.terms("abc").field("skuAttrValueList.valueId");
         searchSourceBuilder.aggregation(aggs);
-
         //转化为elasticSearch的dsl语句，相当于mysql的sql语句
         String dsl = searchSourceBuilder.toString();
-
         return dsl;
     }
 

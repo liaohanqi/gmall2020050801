@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!--<mapper namespace="com.liaohanqi.gmall.manage.mapper.PmsBaseAttrValueMapper">-->
+        <!--不同的xml文件，如果配置了namespace那么id可以重复，如果没有配置namespace那么id不能重复-->
+        <!--namespace+id作为Map<String,MapperStatement>的key使用的，如果没有namespace，那么只剩下id，则导致数据互相覆盖-->
 <mapper namespace="com.liaohanqi.gmall.manage.mapper.PmsBaseAttrValueMapper">
-    <select id="selectAttrValueListByValueIds" resultMap="selectAttrValueListByValueIdsMap">
+<!--<select id="selectAttrValueListByValueIds" resultMap="selectAttrValueListByValueIdsMap">-->
+<!-- List<PmsBaseAttrInfo> selectAttrValueListByValueIds(@Param("join") String join);-->
+<select id="selectAttrValueListByValueIds" resultMap="selectAttrValueListByValueIdsMap">
+
         SELECT
             bai.id as bai_id,bai.*,bav.id as bav_id ,bav.*
         FROM
@@ -14,11 +20,41 @@
         bav.id in (${join})
 
     </select>
+<!--动态sql，为了在复杂查询中，需要查询多个条件，对某些查询条件（可能存在或者不存在，可选择行选择查询条件）进行选择。
+比如：查询房屋信息。
+动态sql的关键字：if/choose/foreach/when/trim/where/set/othwise/bind-->
 
-    <resultMap id="selectAttrValueListByValueIdsMap" type="com.liaohanqi.gmall.bean.PmsBaseAttrInfo" autoMapping="true">
-        <result column="bai_id" property="id"></result>
-        <collection property="attrValueList" ofType="com.liaohanqi.gmall.bean.PmsBaseAttrValue" autoMapping="true">
-            <result column="bav_id" property="id"></result>
-        </collection>
-    </resultMap>
+<!--<resultMap id="selectAttrValueListByValueIdsMap" type="com.liaohanqi.gmall.bean.PmsBaseAttrInfo" autoMapping="true">-->
+<resultMap id="selectAttrValueListByValueIdsMap" type="com.liaohanqi.gmall.bean.PmsBaseAttrInfo" autoMapping="true">
+    <result property="id" column="bai_id"/>
+    <!--<result column="bai_id" property="id"></result>-->
+    <!--<collection property="attrValueList" ofType="com.liaohanqi.gmall.bean.PmsBaseAttrValue" autoMapping="true">-->
+    <!--一对一     association  javaType-->
+    <!--一对多     collection   ofType-->
+
+    <collection property="attrValueList" ofType="com.liaohanqi.gmall.bean.PmsBaseAttrValue" autoMapping="true">
+        <result property="id" column="bav_id"/>
+        <!--<result column="bav_id" property="id"></result>-->
+    </collection>
+</resultMap>
+
+<!--其他标签 增删改查-->
+<!--批量增加，用mybatis的foreach-->
+<insert id=""/>
+<update id=""/>
+<delete id=""/>
+<parameterMap id="" type=""/>
+<sql id=""/>
+
+<!--简单说下Mybatis的一级缓存和二级缓存-->
+<!--Mybatis首先去缓存中查询结果集，如果没有则查询数据库，如果有则从缓存取出返回结果集就不走数据库-->
+<!--对于缓存数据更新机制,当某一个作用域(一级缓存Session/二级缓存Namespace)的进行了C/U/D操作后,默认该作用域下所有select中的缓存将被clear-->
+
+<!--存储作用域是Session,默认打开一级缓存，当Session flush或者close之后，该Session中所有的Cache将清空-->
+<!--一级缓存：Mybatis内部存储缓存使用一个基于PerpetualCache的HashMap本地缓存，key为hashCode+sqlId+Sql语句。value为从查询出来映射成的java对象-->
+
+<!--二级缓存也是默认采用PerpetualCache，Hashmap存储，不同在其存储作用域在Mappertaining(Namespace)，默认不打开-->
+<!--二级缓存：Mybatis的二级缓存即查询缓存，它的作用域是一个mapper的namespace，即在同一个namespace中查询sql可以从缓存中获取数据-->
+<!--二级缓存是可以跨SqlSession的-->
+
 </mapper>

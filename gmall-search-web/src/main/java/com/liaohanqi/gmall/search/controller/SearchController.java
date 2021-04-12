@@ -14,7 +14,6 @@ import java.util.*;
 @Controller
 public class SearchController {
 
-
     @Reference
     SearchService searchService;
 
@@ -122,7 +121,6 @@ public class SearchController {
                 }
             }
         }
-
 
         return urlParam;
     }

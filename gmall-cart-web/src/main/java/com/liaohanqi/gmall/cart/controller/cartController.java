@@ -141,7 +141,6 @@ public class cartController {
             modelMap.put("totalAmount", PriceUtil.getTotalAmount(omsCartItems));
         }
 
-
         return "cartList";
     }
 

@@ -18,19 +18,28 @@ import java.util.Map;
 @Component
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
+// Spring MVC中的拦截器/过滤器HandlerInterceptorAdapter的使用
+//    一：preHandle:在业务处理器处理请求之前被调用。预处理，可以进行编码、安全控制等处理；
+//    二：postHandle:在业务处理器处理请求执行完成后，生成视图之前执行。后处理（调用了Service
+//              并返回ModelAndView，但未进行页面渲染），有机会修改ModelAndView；
+//    三：afterCompletion:在DispatcherServlet完全处理完请求后被调用，可用于清理资源等。
+//              返回处理（已经渲染了页面），可以根据ex是否为null判断是否发生了异常，进行日志记录；
+
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-            // 判断是否需要拦截
+            //这个请求验证功能是每个模块都需要的，也就是所有的web模块都需要的。
+            //在每个Controller方法进入之前都需要进行检查。
+            // 判断请求是否需要拦截
             HandlerMethod hm = (HandlerMethod)handler;
             LoginRequired methodAnnotation = hm.getMethodAnnotation(LoginRequired.class);
 
+            //不需要登录，因为没有登录注解
             if(methodAnnotation==null){
                 return true;
             }
-
+            //需要登录
             // 用户之前登陆过，获取请求中cookie里的token
-
             String token = "";
 
             String oldToken = CookieUtil.getCookieValue(request, "oldToken", true);

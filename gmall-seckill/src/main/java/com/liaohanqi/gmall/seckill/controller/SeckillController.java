@@ -41,7 +41,6 @@ public class SeckillController {
                     System.out.println("请购成功，当前库存剩余数量" + exec.get(0));
                     jedis.set("user:" + userId + ":seckill","1","nx","px",1000*10);
 
-
                     //抢到库存后，发消息生成订单
                 }else {
                     System.out.println(request.getRemoteAddr() + ":非洲人抢不到。。。");

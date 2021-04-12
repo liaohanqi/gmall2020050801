@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.liaohanqi.gmall.util.JwtUtil;
 import com.liaohanqi.gmall.service.UserService;
+import com.liaohanqi.gmall.bean.UmsMember;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,7 +20,6 @@ public class PassportController {
 
     @Reference
     UserService userService;
-
 
     @RequestMapping("index")
     public String index(){
